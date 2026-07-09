@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Album Nhạc Của Nguyệt</title>
+    <style>
+        /* Ảnh nền toàn trang web */
+        body { 
+            background-image: url('../nhac/bg.jpg'); /* Đã thêm ../ nếu ảnh nền bị lỗi */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #fff; 
+            font-family: sans-serif; 
+            padding: 20px; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center;
+            min-height: 90vh;
+        }
+
+        /* Khung Player mờ ảo xuyên thấu */
+        .player-card { 
+            background: rgba(24, 24, 24, 0.85); 
+            backdrop-filter: blur(10px); 
+            padding: 25px; 
+            border-radius: 15px; 
+            width: 350px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.7); 
+        }
+        
+        /* Khung chứa ảnh bìa bài hát */
+        .album-art { width: 100%; height: 200px; border-radius: 8px; margin-bottom: 15px; overflow: hidden; }
+        .album-art img { width: 100%; height: 100%; object-fit: cover; }
+
+        h2 { margin: 10px 0 5px 0; font-size: 20px; text-align: center; }
+        p { color: #aaa; font-size: 14px; text-align: center; margin: 0 0 20px 0; }
+        audio { width: 100%; margin-bottom: 20px; }
+        .playlist { max-height: 250px; overflow-y: auto; }
+        .track { padding: 10px; background: rgba(255, 255, 255, 0.05); margin-bottom: 8px; border-radius: 6px; cursor: pointer; transition: 0.2s; display: flex; justify-content: space-between; }
+        .track:hover { background: rgba(255, 255, 255, 0.15); }
+        .track.active { background: #1db954; color: #000; font-weight: bold; }
+        .artist { font-size: 12px; color: #ccc; }
+        .track.active .artist { color: #333; }
+    </style>
+</head>
+<body>
+
+    <div class="player-card">
+        <div class="album-art">
+            <img id="current-img" src="../nhac/1.jpg" alt="Cover">
+        </div>
+        
+        <h2 id="current-title">Come My Way</h2>
+        <p id="current-artist">Sơn Tùng M-TP</p>
+        
+        <audio id="audio-player" controls src="../nhac/Come My Way.mp3"></audio>
+
+        <div class="playlist">
+            <div class="track active" data-src="../nhac/Come My Way.mp3" data-title="Come My Way" data-artist="Sơn Tùng M-TP" data-img="../nhac/1.jpg">
+                <span>1. Come My Way</span>
+                <span class="artist">Sơn Tùng M-TP</span>
+            </div>
+            
+            <div class="track" data-src="../nhac/Hẹn Hò Nhưng Không Yêu (Thazh x Đôn...).mp3" data-title="Hẹn Hò Nhưng Không Yêu" data-artist="Air Media" data-img="../nhac/2.jpg">
+                <span>2. Hẹn Hò Nhưng Không...</span>
+                <span class="artist">Air Media</span>
+            </div>
+            
+            <div class="track" data-src="../nhac/Không Buông.mp3" data-title="Không Buông" data-artist="Hngle, Ari" data-img="../nhac/3.jpg">
+                <span>3. Không Buông</span>
+                <span class="artist">Hngle, Ari</span>
+            </div>
+            
+            <div class="track" data-src="../nhac/Người Im Lặng Gặp Người Hay Nói.mp3" data-title="Người Im Lặng Gặp Người Hay Nói" data-artist="HIEUTHUHAI" data-img="../nhac/4.jpg">
+                <span>4. Người Im Lặng Gặp...</span>
+                <span class="artist">HIEUTHUHAI</span>
+            </div>
+            
+            <div class="track" data-src="../nhac/Tim Em.mp3" data-title="Tim Em" data-artist="Hngle ft. Bảo Anh" data-img="../nhac/5.jpg">
+                <span>5. Tim Em</span>
+                <span class="artist">Hngle ft. Bảo Anh</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const player = document.getElementById('audio-player');
+        const titleDisplay = document.getElementById('current-title');
+        const artistDisplay = document.getElementById('current-artist');
+        const imgDisplay = document.getElementById('current-img'); 
+        const tracks = document.querySelectorAll('.track');
+
+        function playTrack(track) {
+            document.querySelector('.track.active').classList.remove('active');
+            track.classList.add('active');
+            
+            player.src = track.getAttribute('data-src');
+            titleDisplay.innerText = track.getAttribute('data-title');
+            artistDisplay.innerText = track.getAttribute('data-artist');
+            imgDisplay.src = track.getAttribute('data-img');
+            
+            player.play();
+        }
+
+        tracks.forEach(track => {
+            track.addEventListener('click', () => {
+                playTrack(track);
+            });
+        });
+
+        // Tự động chuyển bài khi kết thúc bài hát cũ
+        player.addEventListener('ended', () => {
+            let activeTrack = document.querySelector('.track.active');
+            let nextTrack = activeTrack.nextElementSibling;
+
+            if (!nextTrack) {
+                nextTrack = tracks[0];
+            }
+            
+            playTrack(nextTrack);
+        });
+    </script>
+
+</body>
+</html>

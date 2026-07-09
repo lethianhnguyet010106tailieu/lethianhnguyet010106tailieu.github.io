@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Album Music - Ta Chẳng Hợp Nhau Đâu</title>
+    <style>
+        /* Cấu hình nền và font chữ mượt mà */
+        body {
+            margin: 0;
+            padding: 20px;
+            background-color: #ffffff; /* Hoặc #f8fafc để tiệp màu nền iframe */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            color: #334155;
+        }
+
+        /* Khung chứa nội dung bài hát */
+        .music-card {
+            background: #ffffff;
+            max-width: 550px;
+            width: 100%;
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+
+        /* Tùy chỉnh khung Video */
+        .video-container {
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            background-color: #000000;
+            margin-bottom: 24px;
+            line-height: 0; /* Xóa khoảng trống thừa dưới video */
+        }
+
+        video {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Tiêu đề bài hát */
+        .lyrics-title {
+            color: #1a365d;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        /* Đường gạch dưới tiêu đề cho đẹp mắt */
+        .lyrics-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background-color: #4f46e5;
+            border-radius: 2px;
+        }
+
+        /* Đoạn văn lời bài hát */
+        .lyrics-content {
+            font-size: 14.5px;
+            line-height: 1.8;
+            color: #475569;
+            white-space: pre-line; /* Giữ nguyên các dấu xuống dòng tự nhiên */
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="music-card">
+        
+        <!-- KHUNG PHÁT VIDEO -->
+        <div class="video-container">
+            <video controls autoplay>
+                <source src="../Video/videoplayback.mp4" type="video/mp4">
+                Trình duyệt của bạn không hỗ trợ thẻ video.
+            </video>
+        </div>
+
+        <!-- PHẦN LỜI BÀI HÁT -->
+        <div class="lyrics-section">
+            <div class="lyrics-title">Lyrics: Ta Chẳng Hợp Nhau Đâu</div>
+            
+            <div class="lyrics-content">
+                Ta chẳng hợp nhau đâu là câu nói khi em bắt đầu
+                Lo âu nhiều điều tốt xấu, nghĩ ta chẳng đi đến đâu
+                Em đừng giận anh nhé, vì có lẽ anh đã xem nhẹ
+                Chuyện gắn bó một đời với người con gái tuyệt vời
+                
+                Để rồi anh đánh mất cơ hội làm người sánh bước bên em
+                Cầm tay em đứng trước lễ đường mọi người cùng ngước lên xem
+                Nhìn hoàng hôn đang xuống sau đồi từ giờ chỉ thấy đêm đen
+                Anh lùi về quá khứ, em sẽ hạnh phúc chứ?
+                
+                Dĩ nhiên rồi
+                Người ta là sự lựa chọn của em mà
+                Chẳng phải sống hối hả, chạy theo hi vọng hoá đá
+                Những thăng trầm nay hoá phong ba trời đổ cơn mưa
+                Đến khi mưa tạnh rồi anh mang ô tới em đi mất rồi
+                
+                Có đôi lần ở lại níu tay em nhận sự thương hại
+                Người yếu đuối thật ngây ngô, chẳng dám xoá mờ kí ức
+                Vì nỗi nhớ ở đây, dấu trong tận tim này
+                Giá như không bắt đầu, thì ngày kết thúc chẳng đau như vậy.
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
